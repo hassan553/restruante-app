@@ -6,6 +6,7 @@ import 'package:food_app/core/utils/app_assets.dart';
 import 'package:food_app/core/utils/app_colors.dart';
 import 'package:food_app/core/utils/app_text_style.dart';
 import 'package:food_app/core/widget/custom_text_field.dart';
+import 'package:food_app/model/product_model.dart';
 import 'package:food_app/screens/home/details_view.dart';
 
 class HomView extends StatefulWidget {
@@ -17,6 +18,15 @@ class HomView extends StatefulWidget {
 
 class _HomViewState extends State<HomView> {
   int currentIndex = 0;
+  List<String> categories = [
+    'All',
+    'Pizza',
+    'Burger',
+    'Drinks',
+    'Dessert',
+    'Snacks'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +79,7 @@ class _HomViewState extends State<HomView> {
                     height: 50.h,
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: 5,
+                        itemCount: categories.length,
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () => setState(() {
@@ -86,8 +96,8 @@ class _HomViewState extends State<HomView> {
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Center(
-                                  child:
-                                      Text('All', style: CustomStyle.f15500)),
+                                  child: Text(categories[index],
+                                      style: CustomStyle.f15500)),
                             ),
                           );
                         })),
@@ -96,7 +106,7 @@ class _HomViewState extends State<HomView> {
               Expanded(
                 child: ListView.builder(
                     physics: const BouncingScrollPhysics(),
-                    itemCount: 5,
+                    itemCount: products.length,
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () =>
@@ -128,11 +138,10 @@ class _HomViewState extends State<HomView> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text('Grilled Beef',
+                                        Text(products[index].name,
                                             style: CustomStyle.f16600),
                                         SizedBox(height: 8.h),
-                                        Text(
-                                            'Spicy grilled beef with special seasoning',
+                                        Text(products[index].description,
                                             overflow: TextOverflow.ellipsis,
                                             maxLines: 2,
                                             style: CustomStyle.f15500.copyWith(
@@ -140,7 +149,7 @@ class _HomViewState extends State<HomView> {
                                             )),
                                         SizedBox(height: 15.h),
                                         Text(
-                                          '4000.00 \$',
+                                          '${products[index].price} \$',
                                           style: CustomStyle.f15600.copyWith(
                                               color: AppColors.primaryColor),
                                         ),
@@ -150,7 +159,7 @@ class _HomViewState extends State<HomView> {
                                   SizedBox(width: 10.w),
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
-                                    child: Image.asset(AppAssets.image4Png,
+                                    child: Image.asset(products[index].image,
                                         width: 120.w,
                                         height: 80.h,
                                         fit: BoxFit.fill),

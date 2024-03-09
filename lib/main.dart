@@ -4,6 +4,7 @@ import 'package:food_app/core/utils/app_theme.dart';
 import 'package:food_app/screens/auth/login_view.dart';
 import 'package:food_app/screens/auth/success_auth_view.dart';
 import 'package:food_app/screens/home/details_view.dart';
+import 'package:food_app/screens/splash/splash_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Food App',
             theme: AppTheme.light(),
-            home: const LoginView(),
+            home: const SplashView(),
           );
         });
   }
