@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_app/core/extension/navigation_extension.dart';
 import 'package:food_app/core/utils/app_assets.dart';
 import 'package:food_app/core/utils/app_colors.dart';
 import 'package:food_app/core/utils/app_text_style.dart';
 import 'package:food_app/core/widget/custom_button.dart';
-
+import 'package:food_app/screens/auth/success_auth_view.dart';
 import '../../core/component/dots_Stack_Image_component.dart';
 import '../../core/widget/custom_text_field.dart';
 
@@ -44,7 +45,8 @@ class RegisterView extends StatelessWidget {
                   ),
                   SizedBox(height: 30.h),
                   CustomButton(
-                    function: () {},
+                    function: () => context
+                        .navigateToAndReplacement(const SuccessAuthView()),
                     title: 'Register',
                     textStyle: CustomStyle.f23400,
                     color: AppColors.offOrange,
